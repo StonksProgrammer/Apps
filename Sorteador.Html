@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sortear</title>
+    <link rel="stylesheet" href="2.Css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <img id="img" src="/Html/fotos/sort 1.png" alt="Sorteio de Número">
+        <p id="p1">Sortear um número</p>
+        <p id="Entre">Entre</p>
+        <input id="input2" type="number" style="font-size: 18px;" placeholder="0">
+        <P id="e">e</P>
+        <input id="input1" type="number" style=" font-size: 18px;" placeholder="0">
+        <br>
+        <button onclick="calc()" id="Sortear">Sortear</button>
+        <p id="resultado">0</p>
+    </main>
+</body>
+
+<style>
+    * {
+        background-color: black;
+        color: white;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    main {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    #img {
+        width: 400px;
+        height: 250px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    #p1 {
+        font-size: 18px;
+        line-height: 38px;
+        margin-top: 30px;
+    }
+
+    #Entre {
+        font-size: 18px;
+        line-height: 38px;
+        display: inline-block;
+        margin-right: 1%;
+        margin-left: -3%;
+    }
+
+    input[type="number"] {
+        border-radius: 14px;
+        border: 1px solid white;
+        background-color: rgba(255, 255, 255, 0.25);
+        width: 100px;
+        padding-left: 10px;
+    }
+
+    #e {
+        display: inline-block;
+        margin-right: 0.8%;
+        font-size: 18px;
+        line-height: 47px;
+        margin-left: 1%;
+    }
+
+    #Sortear {
+        width: 150px;
+        height: 30px;
+        font-size: 20px;
+        font-weight: 700;
+        text-align: center;
+        border-radius: 10px;
+        background-color: #AEC346;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        box-shadow: 0px 0px 30px 0px #AEC34659;
+    }
+
+    #resultado {
+        background-color: rgba(255, 255, 255, 0.25);
+        width: 56px;
+        border-radius: 14px;
+        text-align: center;
+        margin-top: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+</style>
+
+<script>
+    function calc() {
+        let max = Math.ceil(document.getElementById(`input1`).value);
+        let min = Math.floor(document.getElementById(`input2`).value);
+        let result = document.getElementById(`resultado`)
+        result.innerHTML = Math.floor(Math.random() * (max - min + 1)) + min;
+        if (min > max) {
+            result.innerHTML = `Null`
+        }
+    }
+</script>
+
+</html>

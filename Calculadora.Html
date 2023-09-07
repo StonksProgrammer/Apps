@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        body {
+            font-size: 18px;
+            margin-left: 10px;
+            text-align: center;
+            margin-top: 17%;
+        }
+
+        h1 {
+            font-size: 40px;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        section {
+            margin-top: 20px;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        select,
+        input[type="number"] {
+            border-radius: 14px;
+            text-align: center;
+            width: 50px;
+            font-size: 18px;
+            padding: 5px;
+        }
+
+        button {
+            border-radius: 14px;
+            border: 2px solid black;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        #mamaco {
+            background-color: rgba(65, 197, 65, 0.527);
+            color: rgba(65, 197, 65, 0.527);
+            padding: 2% 8% 0% 16%;
+            margin-top: -7.8%;
+            border: 5px solid black;
+            margin-left: 37.3%;
+            position: absolute;
+            z-index: -1;
+            /* Colocado o z-index para colocar o elemento atrás de tudo */
+        }
+
+        p {
+            display: inline;
+            margin-left: 2.5px;
+            margin-right: 2.5px;
+        }
+
+        #result {
+            font-weight: bold;
+            font-size: 24px;
+            margin-left: 1%;
+        }
+
+        main {
+            margin-top: 14%;
+        }
+
+        @media screen and (min-height: 646px) {
+            #mamaco {
+                background-color: rgba(65, 197, 65, 0.527);
+                color: rgba(65, 197, 65, 0.527);
+                padding: 2% 8% 0% 16%;
+                margin-top: -8%;
+                border: 5px solid black;
+                margin-left: 37.3%;
+                position: absolute;
+                z-index: -1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Calculadora</h1>
+        <section>
+            <label>
+                <select oninput="Sistem()" id="funcao">
+                    <option>+</option>
+                    <option>-</option>
+                    <option>*</option>
+                    <option>/</option>
+                </select>
+            </label>
+            <input id="input1" type="number" placeholder="0">
+            <p id="p1">+</p>
+            <input id="input2" type="number" placeholder="0">
+            <p>=</p>
+            <p id="result"></p>
+            <br>
+            <button onclick="Sistem()">Calcular</button>
+        </section>
+        <div id="mamaco">.</div>
+    </main>
+</body>
+
+</html>
+
+
+<script>
+    function Sistem() {
+        let modulo = document.getElementById("funcao");
+        let adicao = document.getElementById("p1");
+        let input1 = document.getElementById(`input1`)
+        let input2 = document.getElementById(`input2`)
+        let result = document.getElementById(`result`)
+        let tras = document.getElementById(`mamaco`)
+        let vezes = input1.value * input2.value
+        let dividi = input1.value / input2.value
+        let menos = input1.value - input2.value
+        let mais = input1.value * 1 + input2.value * 1
+
+
+        if (modulo.selectedIndex == 0) {
+            adicao.innerHTML = "+";
+            result.innerHTML = mais;
+        } else if (modulo.selectedIndex == 1) {
+            adicao.innerHTML = "-";
+            result.innerHTML = menos;
+        } else if (modulo.selectedIndex == 2) {
+            adicao.innerHTML = "*";
+            result.innerHTML = vezes;
+        } else if (modulo.selectedIndex == 3) {
+            adicao.innerHTML = "/";
+            result.innerHTML = dividi;
+        }
+
+        let resultValue = parseFloat(result.innerHTML);
+        let numString = resultValue.toString();
+        let numDigits = numString.length;
+
+        if (numDigits > 4) {
+            console.log(`BORA QUE TA TOP`)
+            tras.style.width = `16%`
+            tras.style.left = "-7.5%"
+        }
+
+        else {
+            tras.style.width = `0`
+            tras.style.left = `0`
+        }
+    }
+
+
+</script>
+
+</html>

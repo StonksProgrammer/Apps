@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Forca</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 16%;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        #word-display {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #guess-input {
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        #guess-button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #dica {
+            color: gray;
+            font-size: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hangman Game</h1>
+    <div id="word-display"></div>
+    <div id="guesses"></div>
+    <input type="text" id="guess-input" placeholder="type a letter">
+    <button id="guess-button">Guess</button>
+    <p id="dica">Tip: The words are in Portuguese, so look for the words in Portuguese!</p>
+
+    <script>
+        const words = ['banana', 'abacaxi', 'morango', 'uva', 'laranja', `carro`, `macaco`, `livro`, `bicicleta`, `avião`, `janela`, `montanha`, `praia`, `computador`, `girassol`, `elefante`, `guitarra`, `oceano`, `lua`, `chocolate`, `floresta`, `relógio`, `sorvete`]
+        let selectedWord = words[Math.floor(Math.random() * words.length)];
+        let guessedLetters = [];
+        let remainingAttempts = 6;
+
+        const wordDisplay = document.getElementById('word-display');
+        const guessesDisplay = document.getElementById('guesses');
+        const guessInput = document.getElementById('guess-input');
+        const guessButton = document.getElementById('guess-button');
+
+        initializeGame();
+
+        function initializeGame() {
+            guessedLetters = [];
+            remainingAttempts = 6;
+            selectedWord = words[Math.floor(Math.random() * words.length)];
+            updateWordDisplay();
+            updateGuessesDisplay();
+            guessInput.value = '';
+            guessButton.addEventListener('click', makeGuess);
+        }
+
+        function updateWordDisplay() {
+            let displayText = '';
+            for (const letter of selectedWord) {
+                if (guessedLetters.includes(letter)) {
+                    displayText += letter;
+                } else {
+                    displayText += '_';
+                }
+                displayText += ' ';
+            }
+            wordDisplay.textContent = displayText;
+        }
+
+        function updateGuessesDisplay() {
+            guessesDisplay.textContent = `Attempts Remaining: ${remainingAttempts}`;
+        }
+
+        function makeGuess() {
+            const guess = guessInput.value.toLowerCase();
+            if (guess.length === 1 && /[a-z]/.test(guess)) {
+                if (!guessedLetters.includes(guess)) {
+                    guessedLetters.push(guess);
+                    if (!selectedWord.includes(guess)) {
+                        remainingAttempts--;
+                    }
+                    updateWordDisplay();
+                    updateGuessesDisplay();
+                    checkGameStatus();
+                }
+            }
+            guessInput.value = '';
+        }
+
+        function checkGameStatus() {
+            if (remainingAttempts === 0) {
+                wordDisplay.textContent = `You lost! the word was "${selectedWord}".`;
+                guessButton.removeEventListener('click', makeGuess);
+            } else if (!wordDisplay.textContent.includes('_')) {
+                wordDisplay.textContent = `Congratulations! You won! the word was "${selectedWord}".`;
+                guessButton.removeEventListener('click', makeGuess);
+            }
+        }
+    </script>
+    
+</body>
+
+</html>

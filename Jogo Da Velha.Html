@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash</title>
+</head>
+
+<style>
+    * {
+        padding: 0 0;
+        margin: 0 0;
+        background-color: black;
+    }
+
+    .buttons {
+        padding: 5% 5%;
+        background-color: white;
+        margin-top: 1%;
+        margin-left: 0.5%;
+        cursor: pointer;
+        font-size: 500%;
+        position: relative;
+        border-radius: 10%;
+        border: 5px solid black;
+    }
+
+    .spans {
+        background: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    main {
+        text-align: center;
+        margin-top: 5%;
+    }
+
+</style>
+</head>
+
+<body>
+    <main>
+        <button id="button_one" onclick="Sistem(this)" class="buttons"><span id="span_one"
+                class="spans"></span></button>
+        <button id="button_two" onclick="Sistem(this)" class="buttons"><span id="span_two"
+                class="spans"></span></button>
+        <button id="button_three" onclick="Sistem(this)" class="buttons"><span id="span_three"
+                class="spans"></span></button>
+        <br>
+        <button id="button_four" onclick="Sistem(this)" class="buttons"><span id="span_four"
+                class="spans"></span></button>
+        <button id="button_five" onclick="Sistem(this)" class="buttons"><span id="span_five"
+                class="spans"></span></button>
+        <button id="button_six" onclick="Sistem(this)" class="buttons"><span id="span_six"
+                class="spans"></span></button>
+        <br>
+        <button id="button_seven" onclick="Sistem(this)" class="buttons"><span id="span_seven"
+                class="spans"></span></button>
+        <button id="button_eight" onclick="Sistem(this)" class="buttons"><span id="span_eight"
+                class="spans"></span></button>
+        <button id="button_nine" onclick="Sistem(this)" class="buttons"><span id="span_nine"
+                class="spans"></span></button>
+    </main>
+</body>
+
+<script>
+
+    let Times = 0
+    let Even_Or_Odd = 0
+
+    function Sistem(button) {
+
+        // Aparencia
+
+        let span = button.querySelector('span')
+        if (span.innerHTML === "") {
+            if (Even_Or_Odd % 2 === 0) {
+                span.innerHTML = "X"
+                Times++
+                Even_Or_Odd++
+            }
+
+            else {
+                span.innerHTML = "O"
+                Times++
+                Even_Or_Odd++;
+            }
+        }
+
+        // Auto Delete
+
+        if (Times >= 9) {
+            let Spans = document.querySelectorAll('.spans')
+            Times = 0;
+            Even_Or_Odd = 0;
+            Spans.forEach(span => {
+                setTimeout(() => {
+                    span.innerHTML = "";
+                }, 800);
+            })
+        }
+
+        // Sistema Principal "X"
+
+        if (Times >= 5) {
+            let span_one = document.getElementById('span_one').textContent;
+            let span_two = document.getElementById('span_two').textContent;
+            let span_three = document.getElementById('span_three').textContent;
+            let span_four = document.getElementById('span_four').textContent;
+            let span_five = document.getElementById('span_five').textContent;
+            let span_six = document.getElementById('span_six').textContent;
+            let span_seven = document.getElementById('span_seven').textContent;
+            let span_eight = document.getElementById('span_eight').textContent;
+            let span_nine = document.getElementById('span_nine').textContent;
+
+            if ((span_one === "X" && span_two === "X" && span_three === "X") ||
+                (span_four === "X" && span_five === "X" && span_six === "X") ||
+                (span_seven === "X" && span_eight === "X" && span_nine === "X") ||
+                (span_one === "X" && span_four === "X" && span_seven === "X") ||
+                (span_two === "X" && span_five === "X" && span_eight === "X") ||
+                (span_three === "X" && span_six === "X" && span_nine === "X") ||
+                (span_one === "X" && span_five === "X" && span_nine === "X") ||
+                (span_three === "X" && span_five === "X" && span_seven === "X")) {
+
+                let Spans = document.querySelectorAll('.spans');
+                Times = 0;
+                Even_Or_Odd = 0;
+                Spans.forEach(span => {
+                    setTimeout(() => {
+                        span.innerHTML = "";
+                    }, 800);
+                });
+
+                setTimeout(() => {
+                    alert(`Look at this.. Congratulations, player "X" won!`);
+                }, 1);
+            }
+        }
+
+        // Sistema Principal "O"
+
+        if (Times >= 5) {
+            let span_one = document.getElementById('span_one').textContent;
+            let span_two = document.getElementById('span_two').textContent;
+            let span_three = document.getElementById('span_three').textContent;
+            let span_four = document.getElementById('span_four').textContent;
+            let span_five = document.getElementById('span_five').textContent;
+            let span_six = document.getElementById('span_six').textContent;
+            let span_seven = document.getElementById('span_seven').textContent;
+            let span_eight = document.getElementById('span_eight').textContent;
+            let span_nine = document.getElementById('span_nine').textContent;
+
+            if ((span_one === "O" && span_two === "O" && span_three === "O") ||
+                (span_four === "O" && span_five === "O" && span_six === "O") ||
+                (span_seven === "O" && span_eight === "O" && span_nine === "O") ||
+                (span_one === "O" && span_four === "O" && span_seven === "O") ||
+                (span_two === "O" && span_five === "O" && span_eight === "O") ||
+                (span_three === "O" && span_six === "O" && span_nine === "O") ||
+                (span_one === "O" && span_five === "O" && span_nine === "O") ||
+                (span_three === "O" && span_five === "O" && span_seven === "O")) {
+
+                let Spans = document.querySelectorAll('.spans');
+                Times = 0;
+                Even_Or_Odd = 0;
+                Spans.forEach(span => {
+                    setTimeout(() => {
+                        span.innerHTML = "";
+                    }, 800);
+                });
+
+                setTimeout(() => {
+                    alert(`Look at this.. Congratulations, player "O" won!`);
+                }, 1);
+            }
+        }
+    }
+
+</script>
+
+</html>
